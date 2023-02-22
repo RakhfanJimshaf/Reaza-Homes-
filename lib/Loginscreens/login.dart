@@ -1,3 +1,5 @@
+// ignore_for_file: duplicate_import
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -5,19 +7,24 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:realestate/Loginscreens/registrationpage.dart';
 import 'package:realestate/screens/homepage.dart';
-import 'package:realestate/services/login_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '../services/login_service.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:realestate/Loginscreens/registrationpage.dart';
+import 'package:realestate/services/login_service.dart';
+
+class loginp extends StatefulWidget {
+  const loginp({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<loginp> createState() => _loginpState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final emailcontroller = TextEditingController();
-  final passwordcontroller = TextEditingController();
+class _loginpState extends State<loginp> {
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
