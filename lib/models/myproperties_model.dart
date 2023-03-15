@@ -18,6 +18,10 @@ class Mypropertiesmodel {
   String category;
   String location;
   String img;
+  String img1;
+  String img2;
+  String img3;
+
   String areaMeasure;
   String price;
   String description;
@@ -30,6 +34,9 @@ class Mypropertiesmodel {
     required this.category,
     required this.location,
     required this.img,
+    required this.img1,
+    required this.img2,
+    required this.img3,
     required this.areaMeasure,
     required this.price,
     required this.description,
@@ -45,6 +52,9 @@ class Mypropertiesmodel {
         category: json["category"],
         location: json["location"],
         img: json["img"],
+        img1: json["img1"],
+        img2: json["img2"],
+        img3: json["img3"],
         areaMeasure: json["area_measure"],
         price: json["price"],
         description: json["description"],
@@ -59,6 +69,9 @@ class Mypropertiesmodel {
         "category": category,
         "location": location,
         "img": img,
+        "img1": img1,
+        "img2": img2,
+        "img3": img3,
         "area_measure": areaMeasure,
         "price": price,
         "description": description,

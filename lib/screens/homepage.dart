@@ -112,54 +112,55 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15,
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-              child: CarouselSlider(
-                items: [
-                  Container(
-                    margin: const EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      image: const DecorationImage(
-                        image: AssetImage("assets/slider1.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      image: const DecorationImage(
-                        image: AssetImage("assets/slider2.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      image: const DecorationImage(
-                        image: AssetImage(
-                          "assets/slider3.jpg",
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ],
-                options: CarouselOptions(
-                  height: 180.0,
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  aspectRatio: 16 / 9,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  viewportFraction: 1,
-                ),
-              ),
+            ListView(
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              children: [
+                SizedBox(
+                    width: MediaQuery.of(context).size.width * 1,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    child: CarouselSlider(
+                      items: [
+                        Container(
+                            margin: const EdgeInsets.all(6.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              image: const DecorationImage(
+                                image: AssetImage("assets/home1.jpg"),
+                                fit: BoxFit.cover,
+                              ),
+                            )),
+                        Container(
+                            margin: const EdgeInsets.all(6.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              image: const DecorationImage(
+                                image: AssetImage("assets/hom2.jpg"),
+                                fit: BoxFit.cover,
+                              ),
+                            )),
+                        Container(
+                            margin: const EdgeInsets.all(6.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              image: const DecorationImage(
+                                image: AssetImage("assets/home3.jpg"),
+                                fit: BoxFit.cover,
+                              ),
+                            ))
+                      ],
+                      options: CarouselOptions(
+                          autoPlay: true,
+                          height: 180.0,
+                          enlargeCenterPage: true,
+                          aspectRatio: 16 / 9,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enableInfiniteScroll: true,
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 800),
+                          viewportFraction: 1),
+                    )),
+              ],
             ),
             const SizedBox(
               height: 25,
@@ -183,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                     AsyncSnapshot<List<Viewpropertymodel>> snapshot) {
                   if (snapshot.hasData) {
                     return Container(
-                      height: MediaQuery.of(context).size.height * 0.46,
+                      height: MediaQuery.of(context).size.height * 0.4444,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 5,
                         vertical: 5,

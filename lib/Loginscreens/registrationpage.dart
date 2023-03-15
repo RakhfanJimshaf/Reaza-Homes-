@@ -1,8 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:realestate/Loginscreens/loginpage.dart';
-import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/services/register_service.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -13,223 +14,252 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
+  bool isChecked = false;
+
   final namecontroller = TextEditingController();
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final addresscontroller = TextEditingController();
   final phonecontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Image.asset(
-              "assets/images.jpg",
-              fit: BoxFit.cover,
-            ),
+          Image.asset(
+            "assets/spl.webp",
+            fit: BoxFit.cover,
           ),
-          Stack(
-            children: [
-              Container(
-                color: AppColors.lightblue.withOpacity(0.6),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25.0, right: 25),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          height: 60,
-                        ),
-                        Text(
-                          "REAL",
-                          style: GoogleFonts.inter(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        const Text(
-                          "E s t a t e",
-                          style: TextStyle(
-                              color: AppColors.green,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(
-                          height: 40,
-                        ),
-                        TextFormField(
+          BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 60, sigmaY: 60),
+              child: Container(
+                color: Colors.grey.withOpacity(0.1),
+              )),
+          Padding(
+            padding: const EdgeInsets.only(left: 35, right: 35),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 120,
+                  ),
+                  Center(
+                      child: Text(
+                    "Create new account",
+                    style: GoogleFonts.didactGothic(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  )),
+                  const SizedBox(
+                    height: 70,
+                  ),
+                  Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                        color: Colors.black26,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: TextField(
+                          decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "First name",
+                              hintStyle: TextStyle(color: Colors.white38)),
                           controller: namecontroller,
-                          keyboardType: TextInputType.name,
                           style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              labelText: "Username",
-                              labelStyle: TextStyle(color: Colors.white)),
                         ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          controller: addresscontroller,
-                          keyboardType: TextInputType.streetAddress,
-                          style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              labelText: "Address",
-                              labelStyle: TextStyle(color: Colors.white)),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          controller: phonecontroller,
-                          keyboardType: TextInputType.phone,
-                          style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              labelText: "Mobile",
-                              labelStyle: TextStyle(color: Colors.white)),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          controller: emailcontroller,
-                          keyboardType: TextInputType.emailAddress,
-                          style: const TextStyle(color: Colors.white),
-                          decoration: const InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              labelText: "Email",
-                              labelStyle: TextStyle(color: Colors.white)),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          controller: passwordcontroller,
-                          keyboardType: TextInputType.name,
-                          style: const TextStyle(color: Colors.white),
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              labelText: "Password",
-                              labelStyle: TextStyle(color: Colors.white)),
-                        ),
-                        const SizedBox(
-                          height: 80,
-                        ),
-                        SizedBox(
-                          height: 40,
-                          width: MediaQuery.of(context).size.width,
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.deepPurple),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        AppColors.green),
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ))),
-                            onPressed: () async {
-                              register(
-                                namecontroller.text.toString(),
-                                addresscontroller.text.toString(),
-                                emailcontroller.text.toString(),
-                                passwordcontroller.text.toString(),
-                                phonecontroller.text.toString(),
-                              ).then((value) {
-                                if (value.status == "success") {
-                                  Fluttertoast.showToast(
-                                    msg: "Registration successfull",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.black,
-                                    textColor: Colors.white,
-                                    fontSize: 14,
-                                  );
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const LoginPage()));
-                                }
-                              });
-                            },
-                            child: Text(
-                              "Register",
-                              style: TextStyle(
-                                  fontSize: MediaQuery.of(context).size.height *
-                                      0.022,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                        color: Colors.black26,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: TextField(
+                            decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Address",
+                                hintStyle: TextStyle(color: Colors.white38)),
+                            controller: addresscontroller,
+                            style: const TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.black26,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: TextField(
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Phone number",
+                                  hintStyle: TextStyle(color: Colors.white38)),
+                              controller: phonecontroller,
+                              style: const TextStyle(color: Colors.white)),
+                        ),
+                      )),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: TextField(
+                            decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Email address",
+                                hintStyle: TextStyle(color: Colors.white38)),
+                            controller: emailcontroller,
+                            style: const TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: TextField(
+                            decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Password",
+                                hintStyle: TextStyle(color: Colors.white38)),
+                            controller: passwordcontroller,
+                            style: const TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white70,
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        },
+                      ),
+                      const Text(
+                        "I agree with the Terms and Policy",
+                        style: TextStyle(color: Colors.white70, fontSize: 12),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 75,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              height: 35,
+                              width: 35,
+                              child: Image.asset("assets/google.png")),
+                          const Text(
+                            "Sign Up with Google",
+                            style: TextStyle(color: Colors.black),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 75,
+                      decoration: const BoxDecoration(),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: const Color(0xFF2C3539),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20))),
+                          onPressed: () async {
+                            register(
+                                    namecontroller.text.toString(),
+                                    addresscontroller.text.toString(),
+                                    phonecontroller.text.toString(),
+                                    emailcontroller.text.toString(),
+                                    passwordcontroller.text.toString())
+                                .then((value) => {
+                                      if (value.status == "success")
+                                        {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const LoginPage())),
+                                          Fluttertoast.showToast(
+                                              msg: 'Registration Successful',
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              fontSize: 16,
+                                              gravity: ToastGravity.BOTTOM,
+                                              backgroundColor: Colors.white,
+                                              textColor: Colors.black)
+                                        }
+                                      else
+                                        {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                            content: Text(
+                                                "Please fill the empty fields",
+                                                style: TextStyle(
+                                                    color: Colors.black)),
+                                            backgroundColor: Colors.white,
+                                          ))
+                                        }
+                                    });
+                          },
+                          child: const Text("Sign Up")))
+                ],
               ),
-            ],
+            ),
           )
         ],
       ),

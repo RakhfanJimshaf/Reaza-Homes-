@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:realestate/Loginscreens/registrationpage.dart';
-import 'package:realestate/screens/homepage.dart';
+import 'package:realestate/screens/nav.dart';
 import 'package:realestate/services/login_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: [
           Image.asset(
-            "Assets/spl.webp",
+            "assets/spl.webp",
             fit: BoxFit.cover,
           ),
           BackdropFilter(
@@ -129,15 +129,15 @@ class _LoginPageState extends State<LoginPage> {
                           login(emailcontroller.text.toString(),
                                   passwordcontroller.text.toString())
                               .then((value) => {
-                                    _addItem(value.id, value.name,
-                                        emailcontroller.text),
                                     if (value.status == "success")
                                       {
+                                        _addItem(value.id, value.name,
+                                            emailcontroller.text),
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const HomePage())),
+                                                    const navbar())),
                                         Fluttertoast.showToast(
                                             msg: 'Login Successful',
                                             toastLength: Toast.LENGTH_SHORT,
@@ -190,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                                 height: 35,
                                 width: 35,
                                 child: Image.asset(
-                                  'Assets/google.png',
+                                  'assets/google.png',
                                 )),
                             const Text(
                               "Sign In with Google",

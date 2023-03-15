@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/screens/homepage.dart';
 import 'package:realestate/services/add_property_service.dart';
+import 'package:video_player/video_player.dart';
 
 class AddpropertyPage extends StatefulWidget {
   const AddpropertyPage({Key? key}) : super(key: key);
@@ -24,7 +25,10 @@ class _AddpropertyPageState extends State<AddpropertyPage> {
   final descriptioncontroller = TextEditingController();
   final contactcontroller = TextEditingController();
   File? image;
-
+  File? image1;
+  File? image2;
+  File? image3;
+  File? video;
   String? categoryvalue;
 
   var dropdownvalue;
@@ -37,6 +41,7 @@ class _AddpropertyPageState extends State<AddpropertyPage> {
     return Items;
   }
 
+  VideoPlayerController? _controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,46 +64,284 @@ class _AddpropertyPageState extends State<AddpropertyPage> {
               const SizedBox(
                 height: 30,
               ),
-              Stack(
+              Column(
                 children: [
-                  // CircleAvatar(
-                  //   foregroundColor: Colors.green,
-                  //   radius: 70,
-                  // backgroundImage: Image.file(
-                  //   File(image?.path ?? ""),
-                  //   fit: BoxFit.cover,
-                  // ).image,
-                  // ),
+                  Row(
+                    children: [
+                      Stack(
+                        children: [
+                          // CircleAvatar(
+                          //   foregroundColor: Colors.green,
+                          //   radius: 70,
+                          // backgroundImage: Image.file(
+                          //   File(image?.path ?? ""),
+                          //   fit: BoxFit.cover,
+                          // ).image,
+                          // ),
+                          Container(
+                              color: Colors.grey,
+                              height: MediaQuery.of(context).size.height * 0.2,
+                              width: MediaQuery.of(context).size.width * 0.2,
+                              child: image != null
+                                  ? Image.file(
+                                      File(image?.path ?? ""),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Container()),
+                          image == null
+                              ? Positioned(
+                                  // right: 150,
+                                  left: 20,
+                                  bottom: 50,
+                                  child: InkWell(
+                                    onTap: () {
+                                      pickImage();
+                                    },
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.06,
+                                      width:
+                                          MediaQuery.of(context).size.height *
+                                              0.06,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[400],
+                                          shape: BoxShape.circle),
+                                      child: const Icon(Icons.add),
+                                    ),
+                                  ),
+                                )
+                              : Container()
+                        ],
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 5),
+                        child: Stack(
+                          children: [
+                            // CircleAvatar(
+                            //   foregroundColor: Colors.green,
+                            //   radius: 70,
+                            // backgroundImage: Image.file(
+                            //   File(image?.path ?? ""),
+                            //   fit: BoxFit.cover,
+                            // ).image,
+                            // ),
+                            Container(
+                                color: Colors.grey,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                child: image1 != null
+                                    ? Image.file(
+                                        File(image1?.path ?? ""),
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Container()),
+                            image1 == null
+                                ? Positioned(
+                                    // right: 150,
+                                    left: 20,
+                                    bottom: 50,
+                                    child: InkWell(
+                                      onTap: () {
+                                        pickImage1();
+                                      },
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.06,
+                                        width:
+                                            MediaQuery.of(context).size.height *
+                                                0.06,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[400],
+                                            shape: BoxShape.circle),
+                                        child: const Icon(Icons.add),
+                                      ),
+                                    ),
+                                  )
+                                : Container()
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 5),
+                        child: Stack(
+                          children: [
+                            // CircleAvatar(
+                            //   foregroundColor: Colors.green,
+                            //   radius: 70,
+                            // backgroundImage: Image.file(
+                            //   File(image?.path ?? ""),
+                            //   fit: BoxFit.cover,
+                            // ).image,
+                            // ),
+                            Container(
+                                color: Colors.grey,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                child: image2 != null
+                                    ? Image.file(
+                                        File(image2?.path ?? ""),
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Container()),
+                            image2 == null
+                                ? Positioned(
+                                    // right: 150,
+                                    left: 20,
+                                    bottom: 50,
+                                    child: InkWell(
+                                      onTap: () {
+                                        pickImage2();
+                                      },
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.06,
+                                        width:
+                                            MediaQuery.of(context).size.height *
+                                                0.06,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[400],
+                                            shape: BoxShape.circle),
+                                        child: const Icon(Icons.add),
+                                      ),
+                                    ),
+                                  )
+                                : Container()
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 5),
+                        child: Stack(
+                          children: [
+                            // CircleAvatar(
+                            //   foregroundColor: Colors.green,
+                            //   radius: 70,
+                            // backgroundImage: Image.file(
+                            //   File(image?.path ?? ""),
+                            //   fit: BoxFit.cover,
+                            // ).image,
+                            // ),
+                            Container(
+                                color: Colors.grey,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                width: MediaQuery.of(context).size.width * 0.2,
+                                child: image3 != null
+                                    ? Image.file(
+                                        File(image3?.path ?? ""),
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Container()),
+                            image3 == null
+                                ? Positioned(
+                                    // right: 150,
+                                    left: 20,
+                                    bottom: 50,
+                                    child: InkWell(
+                                      onTap: () {
+                                        pickImage3();
+                                      },
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.06,
+                                        width:
+                                            MediaQuery.of(context).size.height *
+                                                0.06,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[400],
+                                            shape: BoxShape.circle),
+                                        child: const Icon(Icons.add),
+                                      ),
+                                    ),
+                                  )
+                                : Container()
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text("Video"),
                   Container(
-                      color: Colors.grey,
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.height * 0.4,
-                      child: image != null
-                          ? Image.file(
-                              File(image?.path ?? ""),
-                              fit: BoxFit.cover,
-                            )
-                          : Container()),
-                  image == null
-                      ? Positioned(
-                          // right: 150,
-                          left: 120,
-                          bottom: 50,
-                          child: InkWell(
-                            onTap: () {
-                              pickImage();
-                            },
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.06,
-                              width: MediaQuery.of(context).size.height * 0.06,
-                              decoration: BoxDecoration(
-                                  color: Colors.grey[400],
-                                  shape: BoxShape.circle),
-                              child: const Icon(Icons.add),
-                            ),
-                          ),
-                        )
-                      : Container()
+                    margin: EdgeInsets.only(left: 5),
+                    child: Stack(
+                      children: [
+                        // CircleAvatar(
+                        //   foregroundColor: Colors.green,
+                        //   radius: 70,
+                        // backgroundImage: Image.file(
+                        //   File(image?.path ?? ""),
+                        //   fit: BoxFit.cover,
+                        // ).image,
+                        // ),
+
+                        Container(
+                            color: Colors.grey,
+                            height: MediaQuery.of(context).size.height * 0.2,
+                            width: MediaQuery.of(context).size.width,
+                            child: _controller != null
+                                ? _controller!.value.isInitialized
+                                    ? VideoPlayer(
+                                        _controller!,
+                                      )
+                                    : Container()
+                                : Container()),
+
+                        video == null
+                            ? Positioned(
+                                // right: 150,
+                                left: 20,
+                                bottom: 50,
+                                child: InkWell(
+                                  onTap: () {
+                                    pickVideo();
+                                  },
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.06,
+                                    width: MediaQuery.of(context).size.height *
+                                        0.06,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey[400],
+                                        shape: BoxShape.circle),
+                                    child: const Icon(Icons.add),
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                        video != null
+                            ? FloatingActionButton(
+                                onPressed: () {
+                                  // Wrap the play or pause in a call to `setState`. This ensures the
+                                  // correct icon is shown.
+                                  setState(() {
+                                    // If the video is playing, pause it.
+                                    if (_controller != null) {
+                                      if (_controller!.value.isPlaying) {
+                                        _controller!.pause();
+                                      } else {
+                                        // If the video is paused, play it.
+                                        _controller!.play();
+                                      }
+                                    }
+                                  });
+                                },
+                                // Display the correct icon depending on the state of the player.
+                                child: Icon(
+                                  _controller!.value.isPlaying
+                                      ? Icons.pause
+                                      : Icons.play_arrow,
+                                ),
+                              )
+                            : Container()
+                      ],
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -414,7 +657,11 @@ class _AddpropertyPageState extends State<AddpropertyPage> {
                             pricecontroller.text.toString(),
                             descriptioncontroller.text.toString(),
                             contactcontroller.text.toString(),
-                            (image!.path))
+                            (image!.path),
+                            (image1!.path),
+                            (image2!.path),
+                            (image3!.path),
+                            (video!.path))
                         .then((value) {
                       if (value.status == "success") {
                         Fluttertoast.showToast(
@@ -452,12 +699,63 @@ class _AddpropertyPageState extends State<AddpropertyPage> {
     );
   }
 
+  Future pickVideo() async {
+    try {
+      final video = await ImagePicker().pickVideo(source: ImageSource.gallery);
+      if (video == null) return;
+      final imageTemp = File(video.path);
+      setState(() {
+        this.video = imageTemp;
+        _controller = VideoPlayerController.file(File(video.path))
+          ..initialize().then((_) {
+            // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+            setState(() {});
+          });
+      });
+    } on PlatformException {
+      // Print()
+    }
+  }
+
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
       if (image == null) return;
       final imageTemp = File(image.path);
       setState(() => this.image = imageTemp);
+    } on PlatformException {
+      // Print()
+    }
+  }
+
+  Future pickImage1() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image1 = imageTemp);
+    } on PlatformException {
+      // Print()
+    }
+  }
+
+  Future pickImage2() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image2 = imageTemp);
+    } on PlatformException {
+      // Print()
+    }
+  }
+
+  Future pickImage3() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      setState(() => this.image3 = imageTemp);
     } on PlatformException {
       // Print()
     }

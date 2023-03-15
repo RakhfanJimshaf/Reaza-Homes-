@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:realestate/Loginscreens/loginpage.dart';
 import 'package:realestate/constants/appcolors.dart';
+import 'package:realestate/screens/nav.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
@@ -66,9 +68,29 @@ class _StartScreenState extends State<StartScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const LoginPage())));
+
+    Timer(const Duration(seconds: 3), () {
+      if (getLogin() == true) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const navbar()));
+      } else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+      }
+    });
+  }
+}
+
+Future<bool> getLogin() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.getInt('id');
+  prefs.getString('name');
+  prefs.getString(
+    'email',
+  );
+  if (prefs.getInt('id') != null) {
+    return true;
+  } else {
+    return false;
   }
 }
