@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realestate/constants/appcolors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:realestate/models/chatuserlistmodel.dart';
 import 'package:realestate/screens/chatscreen.dart';
 import 'package:realestate/services/chatuserlistservice.dart';
@@ -15,9 +15,21 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.dblue,
-        title: Text("Chat"),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0.0, top: 60),
+          child: SizedBox(
+              height: 80,
+              width: 500,
+              child: Text(
+                "Chats",
+                style: GoogleFonts.reemKufi(color: Colors.black),
+              )),
+        ),
       ),
       body: FutureBuilder<List<Chatuserlistmodel>>(
           future: getChatuserlist(),

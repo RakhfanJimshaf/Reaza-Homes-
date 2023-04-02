@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/models/profile_model.dart';
 import 'package:realestate/screens/edit_profile.dart';
 import 'package:realestate/services/profile_service.dart';
@@ -17,18 +16,33 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: AppColors.dblue),
-        backgroundColor: Colors.white,
-        title: Text(
-          "Profile",
-          style: GoogleFonts.openSans(
-              color: AppColors.dblue,
-              fontWeight: FontWeight.w600,
-              fontSize: 20),
-          textAlign: TextAlign.center,
-        ),
+        automaticallyImplyLeading: false,
         elevation: 0,
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0.0, top: 60),
+          child: SizedBox(
+              height: 80,
+              width: 500,
+              child: Text(
+                "Profile",
+                style: GoogleFonts.reemKufi(color: Colors.black),
+              )),
+        ),
       ),
+      // appBar: AppBar(
+      //   iconTheme: const IconThemeData(color: AppColors.dblue),
+      //   backgroundColor: Colors.white,
+      //   title: Text(
+      //     "Profile",
+      //     style: GoogleFonts.openSans(
+      //         color: AppColors.dblue,
+      //         fontWeight: FontWeight.w600,
+      //         fontSize: 20),
+      //     textAlign: TextAlign.center,
+      //   ),
+      //   elevation: 0,
+      // ),
       body: Padding(
         padding: const EdgeInsets.only(left: 15.0, right: 15),
         child: FutureBuilder<List<Profilemodel>>(
@@ -73,8 +87,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(
                                 Colors.deepPurple),
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                AppColors.dblue),
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.purple),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
@@ -125,7 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 borderRadius: BorderRadius.circular(40)),
                             child: Icon(
                               Icons.favorite_outline,
-                              color: AppColors.dblue,
+                              color: Colors.pink,
                             )),
                         Text(
                           "My favourites",
@@ -155,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 borderRadius: BorderRadius.circular(40)),
                             child: Icon(
                               Icons.add,
-                              color: AppColors.dblue,
+                              color: Colors.pink,
                             )),
                         Text(
                           "Add properties",
@@ -185,7 +199,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 borderRadius: BorderRadius.circular(40)),
                             child: Icon(
                               Icons.logout,
-                              color: AppColors.dblue,
+                              color: Colors.pink,
                             )),
                         Text(
                           "Logout",

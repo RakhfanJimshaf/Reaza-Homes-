@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/constants/baseurl.dart';
 import 'package:realestate/models/favlist_model.dart';
 import 'package:realestate/services/deletefav_list_service.dart';
@@ -17,19 +16,34 @@ class myfav extends StatefulWidget {
 class _myfavState extends State<myfav> {
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
+      extendBody: true,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.dblue,
-        title: Text(
-          "My Favourites",
-          style: GoogleFonts.openSans(
-              color: Colors.white, fontWeight: FontWeight.w600, fontSize: 20),
-          textAlign: TextAlign.center,
-        ),
+        automaticallyImplyLeading: false,
         elevation: 0,
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0.0, top: 60),
+          child: SizedBox(
+              height: 80,
+              width: 500,
+              child: Text(
+                "Liked Properties",
+                style: GoogleFonts.reemKufi(color: Colors.black),
+              )),
+        ),
       ),
+      //   iconTheme: const IconThemeData(color: Colors.white),
+      //   backgroundColor: AppColors.dblue,
+      //   title: Text(
+      //     "My Favourites",
+      //     style: GoogleFonts.openSans(
+      //         color: Colors.white, fontWeight: FontWeight.w600, fontSize: 20),
+      //     textAlign: TextAlign.center,
+      //   ),
+      //   elevation: 0,
+      // ),
       body: FutureBuilder<List<Favlistmodel>>(
           future: getFavlist(),
           builder: (BuildContext context,

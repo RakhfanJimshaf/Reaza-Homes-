@@ -21,23 +21,53 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       drawer: getDrawer(context),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.grey[200],
-        title: Text(
-          "Real estate",
-          style: TextStyle(color: Colors.black),
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0.0, top: 60),
+          child: SizedBox(
+              height: 80,
+              width: 500,
+              child: Text(
+                "Discover Your Home",
+                style: GoogleFonts.reemKufi(color: Colors.black),
+              )),
         ),
-        elevation: 0,
-        actions: [
+        actions: const [
+          // Padding(
+          //   padding: EdgeInsets.only(right: 12.0),
+          //   child: Icon(
+          //     Icons.notifications_outlined,
+          //     color: Colors.black,
+          //     size: 30,
+          //   ),
+          // ),
           Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: Icon(Icons.logout),
-          )
+            padding: EdgeInsets.only(right: 10.0),
+            child: Icon(
+              Icons.logout,
+              color: Colors.black,
+              size: 30,
+            ),
+          ),
         ],
       ),
+      //   title: Text(
+      //     "Real estate",
+      //     style: TextStyle(color: Colors.black),
+      //   ),
+      //   elevation: 0,
+      //   actions: [
+      //     Padding(
+      //       padding: const EdgeInsets.only(right: 10.0),
+      //       child: Icon(Icons.logout),
+      //     )
+      //   ],
+      // ),
       body: Padding(
         padding: const EdgeInsets.only(left: 15.0, right: 15),
         child: Column(

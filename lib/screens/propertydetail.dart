@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/constants/baseurl.dart';
 import 'package:realestate/models/view_property_model.dart';
+import 'package:realestate/screens/chat_module/user_chat_screen.dart';
 import 'package:realestate/screens/payment.dart';
 import 'package:realestate/screens/properties_preview.dart';
 import 'package:realestate/services/favourite_service.dart';
@@ -500,7 +501,16 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChatScreenUser(
+                                        userId: widget.model.userId.toString(),
+                                        userName:
+                                            widget.model.userId.toString(),
+                                      )));
+                        },
                         child: Icon(
                           Icons.chat,
                           color: Colors.white,
@@ -566,8 +576,14 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   }
 
   Future<void> _launchUrl(String phone) async {
-    if (!await launchUrl(Uri.parse(phone))) {
-      throw Exception('Could not launch $phone');
+    String phno = "tel:" + phone;
+    if (await canLaunchUrl(Uri.parse(phno))) {
+      launchUrl(
+        Uri.parse(phno),
+      );
+      LaunchMode.externalNonBrowserApplication;
+    } else {
+      throw 'Could not launch $phno)';
     }
   }
 }
