@@ -29,14 +29,14 @@ class _StartScreenState extends State<StartScreen> {
               height: 150,
               width: 150,
               child: Image.asset(
-                "assets/logo.jpg",
+                "assets/reazalogo.png",
                 fit: BoxFit.fill,
               )),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
               Text(
-                "Real ",
+                "Reaza",
                 style: TextStyle(
                     color: AppColors.dblue,
                     fontWeight: FontWeight.bold,
@@ -44,7 +44,7 @@ class _StartScreenState extends State<StartScreen> {
                 textAlign: TextAlign.center,
               ),
               Text(
-                "Estate",
+                "Homes",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,

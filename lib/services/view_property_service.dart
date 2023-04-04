@@ -5,7 +5,7 @@ import 'package:realestate/constants/baseurl.dart';
 import 'package:realestate/constants/userdata.dart';
 import 'package:realestate/models/view_property_model.dart';
 
-Future<List<Viewpropertymodel>> getViewproperty() async {
+Future<Viewpropertymodel> getViewproperty() async {
   var url = baseurl + "/api_getAllproperty/";
   final res = await http.post(
     Uri.parse(url),
@@ -17,11 +17,10 @@ Future<List<Viewpropertymodel>> getViewproperty() async {
     },
   );
   if (res.statusCode == 200) {
-    List jsonResponse = json.decode(res.body);
-    print(jsonResponse);
-    return jsonResponse
-        .map((viewproperty) => new Viewpropertymodel.fromMap(viewproperty))
-        .toList();
+    Map<String, dynamic> responseJson = json.decode(res.body);
+    print('responseJson : $responseJson');
+
+    return Viewpropertymodel.fromMap(jsonDecode(res.body));
   } else {
     throw Exception('Failed');
   }

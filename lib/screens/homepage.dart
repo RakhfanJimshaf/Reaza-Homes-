@@ -208,10 +208,10 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 15,
             ),
-            FutureBuilder<List<Viewpropertymodel>>(
+            FutureBuilder<Viewpropertymodel>(
                 future: getViewproperty(),
                 builder: (BuildContext context,
-                    AsyncSnapshot<List<Viewpropertymodel>> snapshot) {
+                    AsyncSnapshot<Viewpropertymodel> snapshot) {
                   if (snapshot.hasData) {
                     return Container(
                       height: MediaQuery.of(context).size.height * 0.4444,
@@ -231,7 +231,7 @@ class _HomePageState extends State<HomePage> {
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 13,
                         ),
-                        itemCount: snapshot.data!.length,
+                        itemCount: snapshot.data!.data!.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
@@ -239,7 +239,9 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => ProductDetailsView(
-                                          model: snapshot.data![index])));
+                                            model: snapshot.data!,
+                                            index: index,
+                                          )));
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -266,8 +268,8 @@ class _HomePageState extends State<HomePage> {
                                           topRight: Radius.circular(10.0),
                                           topLeft: Radius.circular(10.0)),
                                       child: CachedNetworkImage(
-                                        imageUrl:
-                                            baseurl + snapshot.data![index].img,
+                                        imageUrl: baseurl +
+                                            snapshot.data!.data![index].img!,
                                         imageBuilder:
                                             (context, imageProvider) =>
                                                 Container(
@@ -289,7 +291,8 @@ class _HomePageState extends State<HomePage> {
                                       Center(
                                         child: Text(
                                           "Price: ₹" +
-                                              snapshot.data![index].price,
+                                              snapshot
+                                                  .data!.data![index].price!,
                                           style: GoogleFonts.openSans(
                                             color: Colors.black,
                                             fontSize: 13,
@@ -303,7 +306,8 @@ class _HomePageState extends State<HomePage> {
                                       Center(
                                         child: Text(
                                           "sqft: " +
-                                              snapshot.data![index].areaMeasure,
+                                              snapshot.data!.data![index]
+                                                  .areaMeasure!,
                                           style: GoogleFonts.openSans(
                                             color: Colors.grey[500],
                                             fontSize: 13,
@@ -315,8 +319,8 @@ class _HomePageState extends State<HomePage> {
                                         height: 3,
                                       ),
                                       Center(
-                                          child: snapshot
-                                                      .data![index].category ==
+                                          child: snapshot.data!.data![index]
+                                                      .category ==
                                                   "Sell"
                                               ? Text(
                                                   "Sale",

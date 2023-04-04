@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/constants/baseurl.dart';
 import 'package:realestate/models/myproperties_model.dart';
+import 'package:realestate/screens/drawer.dart';
 import 'package:realestate/screens/edit_page.dart';
 import 'package:realestate/services/delete_property_service.dart';
 import 'package:realestate/services/myproperties_service.dart';
@@ -19,16 +20,40 @@ class _MypropertiesPageState extends State<MypropertiesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      drawer: getDrawer(context),
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.dblue,
-        title: Text(
-          "My Properties",
-          style: GoogleFonts.openSans(
-              color: Colors.white, fontWeight: FontWeight.w600, fontSize: 20),
-          textAlign: TextAlign.center,
+        automaticallyImplyLeading: false,
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0.0, top: 60),
+          child: SizedBox(
+              height: 80,
+              width: 500,
+              child: Text(
+                "My Properties",
+                style: GoogleFonts.reemKufi(color: Colors.black),
+              )),
         ),
-        elevation: 0,
+        actions: const [
+          // Padding(
+          //   padding: EdgeInsets.only(right: 12.0),
+          //   child: Icon(
+          //     Icons.notifications_outlined,
+          //     color: Colors.black,
+          //     size: 30,
+          //   ),
+          // ),
+          Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Icon(
+              Icons.logout,
+              color: Colors.black,
+              size: 30,
+            ),
+          ),
+        ],
       ),
       body: FutureBuilder<List<Mypropertiesmodel>>(
           future: getMyproperties(),

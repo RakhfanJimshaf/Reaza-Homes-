@@ -137,7 +137,6 @@ class _ChatScreenState extends State<ChatScreenUser> {
                   // InBubble(message: 'Hello'),
                   FutureBuilder<List<Viewmsgmodel>>(
                       future: getViewmsg(widget.userId.toString()),
-                     
                       builder: (BuildContext context,
                           AsyncSnapshot<List<Viewmsgmodel>> snapshot) {
                         if (snapshot.hasData) {
@@ -145,7 +144,8 @@ class _ChatScreenState extends State<ChatScreenUser> {
                               shrinkWrap: true,
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index) {
-                           String name=snapshot.data[index].
+                                String name =
+                                    snapshot.data![index].senderId.toString();
 
                                 return OutBubble(
                                     message: snapshot.data![index].sendMsg);

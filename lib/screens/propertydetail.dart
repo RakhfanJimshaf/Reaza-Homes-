@@ -15,7 +15,9 @@ import 'package:video_player/video_player.dart';
 
 class ProductDetailsView extends StatefulWidget {
   final Viewpropertymodel model;
-  const ProductDetailsView({Key? key, required this.model}) : super(key: key);
+  final int index;
+  const ProductDetailsView({Key? key, required this.model, required this.index})
+      : super(key: key);
 
   @override
   State<ProductDetailsView> createState() => _ProductDetailsViewState();
@@ -26,11 +28,12 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   VideoPlayerController? _controller;
   @override
   void initState() {
-    _controller = VideoPlayerController.network(baseurl + widget.model.video)
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
+    _controller =
+        VideoPlayerController.network(baseurl + widget.model.data!.first.video!)
+          ..initialize().then((_) {
+            // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+            setState(() {});
+          });
     // TODO: implement initState
     super.initState();
   }
@@ -87,12 +90,15 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PropertiesPreView(
-                                              url: baseurl + widget.model.img,
+                                              url: baseurl +
+                                                  widget.model
+                                                      .data![widget.index].img!,
                                               status: "Nom",
                                             )));
                               }),
                               child: CachedNetworkImage(
-                                imageUrl: baseurl + widget.model.img,
+                                imageUrl: baseurl +
+                                    widget.model.data![widget.index].img!,
                                 progressIndicatorBuilder:
                                     (context, url, progress) {
                                   return CircularProgressIndicator();
@@ -112,6 +118,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               ),
                             ),
                           ),
+
                           Card(
                             clipBehavior: Clip.antiAlias,
                             elevation: 5,
@@ -124,12 +131,17 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PropertiesPreView(
-                                              url: baseurl + widget.model.img1,
+                                              url: baseurl +
+                                                  widget
+                                                      .model
+                                                      .data![widget.index]
+                                                      .img1!,
                                               status: "Nom",
                                             )));
                               }),
                               child: CachedNetworkImage(
-                                imageUrl: baseurl + widget.model.img1,
+                                imageUrl: baseurl +
+                                    widget.model.data![widget.index].img1!,
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
                                   width: MediaQuery.of(context).size.width * 1,
@@ -157,12 +169,17 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PropertiesPreView(
-                                              url: baseurl + widget.model.img2,
+                                              url: baseurl +
+                                                  widget
+                                                      .model
+                                                      .data![widget.index]
+                                                      .img2!,
                                               status: "Nom",
                                             )));
                               }),
                               child: CachedNetworkImage(
-                                imageUrl: baseurl + widget.model.img2,
+                                imageUrl: baseurl +
+                                    widget.model.data![widget.index].img2!,
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
                                   width: MediaQuery.of(context).size.width * 1,
@@ -190,12 +207,17 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PropertiesPreView(
-                                              url: baseurl + widget.model.img3,
+                                              url: baseurl +
+                                                  widget
+                                                      .model
+                                                      .data![widget.index]
+                                                      .img3!,
                                               status: "PAN",
                                             )));
                               }),
                               child: CachedNetworkImage(
-                                imageUrl: baseurl + widget.model.img3,
+                                imageUrl: baseurl +
+                                    widget.model.data![widget.index].img3!,
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
                                   width: MediaQuery.of(context).size.width * 1,
@@ -282,7 +304,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "₹" + widget.model.price,
+                                    "₹" +
+                                        widget.model.data![widget.index].price!,
                                     style: TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w600,
@@ -291,7 +314,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                   IconButton(
                                       onPressed: () {
                                         getaddFavourite(
-                                          widget.model.id.toString(),
+                                          widget.model.data![widget.index].id!
+                                              .toString(),
                                         ).then((value) {
                                           if (value.status == "success") {
                                             Fluttertoast.showToast(
@@ -330,7 +354,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               ),
                               const SizedBox(height: 5),
                               Text(
-                                widget.model.proType,
+                                widget.model.data![widget.index].proType!,
                                 style: GoogleFonts.poppins(
                                   fontSize: 15,
                                   color: Colors.black,
@@ -340,7 +364,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               Row(
                                 children: [
                                   Text(
-                                    widget.model.location,
+                                    widget.model.data![widget.index].location!,
                                     style: GoogleFonts.poppins(
                                       fontSize: 15,
                                       color: Colors.grey[600],
@@ -352,7 +376,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                 children: [
                                   Text(
                                     "Area: " +
-                                        widget.model.areaMeasure +
+                                        widget.model.data![widget.index]
+                                            .areaMeasure! +
                                         "sqft",
                                     style: GoogleFonts.poppins(
                                       fontSize: 15,
@@ -363,7 +388,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                     width: 160,
                                   ),
                                   Text(
-                                    widget.model.category,
+                                    widget.model.data![widget.index].category!,
                                     style: GoogleFonts.poppins(
                                         fontSize: 15,
                                         color: Colors.green,
@@ -379,6 +404,14 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
+                              Text(
+                                'Posted By:' +
+                                    widget.model.data![widget.index].name!,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                               const SizedBox(height: 5),
                               Container(
                                 height:
@@ -387,7 +420,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        widget.model.description,
+                                        widget.model.data![widget.index]
+                                            .description!,
                                         style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Colors.grey[700],
@@ -480,7 +514,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               borderRadius: BorderRadius.circular(20),
                             ))),
                         onPressed: () {
-                          _launchUrl(widget.model.contact);
+                          _launchUrl(widget.model.data![widget.index].contact!);
                         },
                         child: Icon(
                           Icons.phone,
@@ -506,9 +540,12 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ChatScreenUser(
-                                        userId: widget.model.userId.toString(),
-                                        userName:
-                                            widget.model.userId.toString(),
+                                        userId: widget
+                                            .model.data![widget.index].userId
+                                            .toString(),
+                                        userName: widget
+                                            .model.data![widget.index].name
+                                            .toString(),
                                       )));
                         },
                         child: Icon(
@@ -546,8 +583,10 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => PaymentPage(
-                                        properyid: widget.model.id,
-                                        price: widget.model.price,
+                                        properyid: widget
+                                            .model.data![widget.index].id!,
+                                        price: widget
+                                            .model.data![widget.index].price!,
                                       )));
                         },
                         child: Icon(
