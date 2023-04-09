@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/constants/baseurl.dart';
 import 'package:realestate/models/view_property_model.dart';
 import 'package:realestate/screens/chat_module/user_chat_screen.dart';
@@ -28,12 +27,12 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   VideoPlayerController? _controller;
   @override
   void initState() {
-    _controller =
-        VideoPlayerController.network(baseurl + widget.model.data!.first.video!)
-          ..initialize().then((_) {
-            // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-            setState(() {});
-          });
+    _controller = VideoPlayerController.network(
+        baseurl + widget.model.data![widget.index].video!)
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});
+      });
     // TODO: implement initState
     super.initState();
   }
@@ -43,7 +42,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.dblue,
+        backgroundColor: Colors.purple,
         title: Text(
           "Property Details",
           style: GoogleFonts.openSans(
@@ -507,8 +506,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(
                                 Colors.deepPurple),
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                AppColors.dblue),
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.purple),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),

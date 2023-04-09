@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/constants/userdata.dart';
 import 'package:realestate/screens/homepage.dart';
 import 'package:realestate/services/postfeedback_service.dart';
@@ -22,7 +21,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.dblue,
+        backgroundColor: Colors.purple,
         title: Text(
           "Add Feedback",
           style: GoogleFonts.openSans(
@@ -130,7 +129,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.deepPurple),
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(AppColors.dblue),
+                          MaterialStateProperty.all<Color>(Colors.purple),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),

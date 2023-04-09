@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../constants/appcolors.dart';
 import '../services/placeorder_service.dart';
 import 'homepage.dart';
 
@@ -61,7 +60,7 @@ class _PaymentPageState extends State<PaymentPage> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.dblue,
+        backgroundColor: Colors.purple,
         title: Text(
           "Payment",
           style: GoogleFonts.openSans(
@@ -294,7 +293,7 @@ class _PaymentPageState extends State<PaymentPage> {
                               foregroundColor: MaterialStateProperty.all<Color>(
                                   Colors.deepPurple),
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  AppColors.lightblue),
+                                  Colors.purple),
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(

@@ -45,10 +45,8 @@ class _ProfileEditPageState extends State<ProfileEditPage>
         backgroundColor: Colors.white,
         title: Text(
           "Edit",
-          style: GoogleFonts.openSans(
-              color: AppColors.dblue,
-              fontWeight: FontWeight.w600,
-              fontSize: 20),
+          style: GoogleFonts.reemKufi(
+              color: Colors.black, fontWeight: FontWeight.w600, fontSize: 20),
           textAlign: TextAlign.center,
         ),
         elevation: 0,
@@ -82,9 +80,9 @@ class _ProfileEditPageState extends State<ProfileEditPage>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Edit pet details',
+                      'Edit Profile Details',
                       style: TextStyle(
-                          color: AppColors.dblue,
+                          color: Colors.purple,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold),
                     ),

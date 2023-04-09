@@ -32,7 +32,7 @@ class _editpageState extends State<editpage> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.dblue,
+        backgroundColor: Colors.purple,
         title: Text(
           "Edit",
           style: GoogleFonts.openSans(

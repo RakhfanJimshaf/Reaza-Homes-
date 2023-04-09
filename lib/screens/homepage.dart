@@ -6,8 +6,8 @@ import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/constants/baseurl.dart';
 import 'package:realestate/models/view_property_model.dart';
 import 'package:realestate/screens/drawer.dart';
+import 'package:realestate/screens/feedbackpage.dart';
 import 'package:realestate/screens/propertydetail.dart';
-import 'package:realestate/screens/viewfeedbackpage.dart';
 import 'package:realestate/services/view_property_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
       drawer: getDrawer(context),
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Padding(
@@ -124,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => viewfeedbackPage()));
+                            builder: (context) => FeedbackPage()));
                   },
                   child: Container(
                     height: 40,

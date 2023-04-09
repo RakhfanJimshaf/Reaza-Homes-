@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:realestate/constants/appcolors.dart';
 import 'package:realestate/models/chatuserlistmodel.dart';
 import 'package:realestate/models/view_msg_model.dart';
 import 'package:realestate/services/sendmsgservice.dart';
@@ -80,7 +79,6 @@ class OutBubble extends StatelessWidget {
                 bottomRight: Radius.circular(19),
               ),
             ),
-            
             child: Text(
               message,
               style: const TextStyle(color: Colors.white, fontSize: 15),
@@ -121,7 +119,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.dblue,
+          backgroundColor: Colors.purple,
           title: Text(widget.model.name),
         ),
         body: Stack(
@@ -170,7 +168,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     IconButton(
                         icon: Icon(
                           Icons.camera_alt,
-                          color: Theme.of(context).primaryColor,
+                          color: Colors.purple,
                           size: 35,
                         ),
                         onPressed: null),
@@ -182,8 +180,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                     ),
                     IconButton(
-                        icon: Icon(Icons.send,
-                            color: Theme.of(context).primaryColor, size: 35),
+                        icon: Icon(Icons.send, color: Colors.purple, size: 35),
                         onPressed: () {
                           getSendmsg(
                             widget.model.id.toString(),

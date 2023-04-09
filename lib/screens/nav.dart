@@ -60,7 +60,7 @@ class _navbarState extends State<navbar> {
                       child: Text(
                         'NO',
                         style: TextStyle(
-                          color: AppColors.dblue,
+                          color: Colors.purple,
                         ),
                       )),
                   TextButton(
@@ -69,7 +69,7 @@ class _navbarState extends State<navbar> {
                         child: Text(
                           'YES',
                           style: TextStyle(
-                            color: AppColors.dblue,
+                            color: Colors.purple,
                           ),
                         ),
                         onTap: () async {
@@ -128,7 +128,7 @@ class _navbarState extends State<navbar> {
                 // clipBehavior: Clip.antiAlias,
                 // decoration: const BoxDecoration(
                 //     color: Colors.black26, shape: BoxShape.circle),
-                // child: Image.asset("Startbucks-Logo.png"),
+                // child: Image.asset("reazalogo.png"),
               ),
               ListTile(
                 onTap: () {

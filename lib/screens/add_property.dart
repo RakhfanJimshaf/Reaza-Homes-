@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:realestate/constants/appcolors.dart';
-import 'package:realestate/screens/homepage.dart';
+import 'package:realestate/screens/nav.dart';
 import 'package:realestate/services/add_property_service.dart';
 import 'package:video_player/video_player.dart';
 
@@ -47,7 +46,7 @@ class _AddpropertyPageState extends State<AddpropertyPage> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: AppColors.dblue,
+        backgroundColor: Colors.purple,
         title: Text(
           "Add Property",
           style: GoogleFonts.openSans(
@@ -643,7 +642,7 @@ class _AddpropertyPageState extends State<AddpropertyPage> {
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.deepPurple),
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(AppColors.dblue),
+                          MaterialStateProperty.all<Color>(Colors.purple),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -676,7 +675,7 @@ class _AddpropertyPageState extends State<AddpropertyPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomePage()));
+                                builder: (context) => const navbar()));
                       }
                     });
                   },
